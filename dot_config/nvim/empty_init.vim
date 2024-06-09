@@ -1,1 +1,1 @@
-:colortheme sorbet
+colortheme sorbet
