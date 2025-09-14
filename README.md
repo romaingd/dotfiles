@@ -5,3 +5,32 @@
 - https://github.com/rvaiya/keyd
 - Config at `./keyd.conf`
 
+### fzf
+
+- https://github.com/junegunn/fzf
+- https://github.com/junegunn/fzf/issues/1866
+
+### Zsh + Oh-my-Zsh
+
+- https://ohmyz.sh/
+- Theme `robbyrussel`
+
+```sh
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+```
+
+### Aliases
+
+```sh
+alias c='clear'
+alias ll='ls -alF'
+
+# Python
+alias debugp='python -m debugpy --listen 5678 --wait-for-client'
+
+# Git
+alias glg='glol -10'
+
+# Docker
+alias dkb='docker exec -it <container_name> env TERM=xterm-256color script -q -c "cd $HOME && zsh"'
+```
