@@ -34,3 +34,32 @@ alias glg='glol -10'
 # Docker
 alias dkb='docker exec -it <container_name> env TERM=xterm-256color script -q -c "cd $HOME && zsh"'
 ```
+
+### ripgrep
+
+- https://github.com/BurntSushi/ripgrep
+
+
+### NVM
+
+- https://github.com/nvm-sh/nvm
+
+
+### Alacritty
+
+- https://alacritty.org/#Installation
+
+
+### TMUX
+
+- https://github.com/tmux/tmux/wiki
+
+
+### Fira Code
+
+- https://github.com/tonsky/FiraCode
+
+
+### uv
+
+- https://docs.astral.sh/uv/
