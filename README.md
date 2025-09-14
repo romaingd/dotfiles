@@ -63,3 +63,17 @@ alias dkb='docker exec -it <container_name> env TERM=xterm-256color script -q -c
 ### uv
 
 - https://docs.astral.sh/uv/
+
+
+### Gestures
+
+- https://github.com/HieuTNg/touchpad-gesture-customization
+
+```sh
+➜  ~ gnome-extensions list
+touchpad-gesture-customization@coooolapps.com
+ding@rastersoft.com
+tiling-assistant@ubuntu.com
+ubuntu-appindicators@ubuntu.com
+ubuntu-dock@ubuntu.com
+```
