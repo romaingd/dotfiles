@@ -77,3 +77,16 @@ tiling-assistant@ubuntu.com
 ubuntu-appindicators@ubuntu.com
 ubuntu-dock@ubuntu.com
 ```
+
+# Ubuntu settings
+
+- Compose key: `Right Alt`
+
+## Keyboard shortcuts
+
+- Launchers > Launch terminal: `Super+I`
+- Windows > Maximize window: `Super+Up`
+- Custom shortcuts
+    - Guake toggle: `Alt+Backslash`
+    - Next song: `Alt+End`
+    - Play/pause: `Alt+P`
