@@ -1,0 +1,6 @@
+[tools]
+cargo-binstall = "latest"
+chezmoi = "latest"
+just = "latest"
+node = "lts"
+uv = "latest"

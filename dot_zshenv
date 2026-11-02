@@ -1,0 +1,4 @@
+# --- step 1: toolchains ---
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+export UV_PYTHON_PREFERENCE=only-managed
+. "$HOME/.cargo/env"
