@@ -2,8 +2,10 @@
 
 ## keyd (system-wide)
 - Caps: tap = Esc, hold = Ctrl
-- Left Ctrl: F13 = toggle / focus the persistent terminal
-- Esc is plain Esc again
+- Esc key is not remapped (Caps tap is the usual Esc)
+
+## ddterm (GNOME extension)
+- F12: toggle the drop-down terminal (attached to tmux session `main`)
 
 ## tmux (prefix C-b)
 - prefix f: project switcher (fzf over zoxide) → one session per project

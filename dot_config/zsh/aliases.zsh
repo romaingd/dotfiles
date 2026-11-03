@@ -12,6 +12,8 @@ alias gl='git pull'
 alias gp='git push'
 alias glol="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'"
 alias glg='glol -10'
+alias gst='git status'
+alias gd='git diff'
 
 # listing (ls itself stays untouched)
 if (( $+commands[eza] )); then
