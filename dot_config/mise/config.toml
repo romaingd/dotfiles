@@ -2,5 +2,7 @@
 cargo-binstall = "latest"
 chezmoi = "latest"
 just = "latest"
+lazygit = "latest"
 node = "lts"
+starship = "latest"
 uv = "latest"
