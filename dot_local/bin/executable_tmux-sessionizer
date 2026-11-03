@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Pick a project directory (zoxide history) with fzf, then jump to a tmux session named after it.
+set -euo pipefail
+dir=$(zoxide query -l | fzf --reverse --prompt='project> ') || exit 0
+name=$(basename "$dir" | tr . _)
+tmux has-session -t "=$name" 2>/dev/null || tmux new-session -ds "$name" -c "$dir"
+if [[ -n ${TMUX:-} ]]; then tmux switch-client -t "=$name"; else tmux attach -t "=$name"; fi

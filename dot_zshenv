@@ -1,4 +1,16 @@
-# --- step 1: toolchains ---
-export PATH="$HOME/.local/share/mise/shims:$PATH"
-export UV_PYTHON_PREFERENCE=only-managed
-. "$HOME/.cargo/env"
+# ~/.zshenv — sourced by EVERY zsh: interactive shells, scripts, agent subprocesses, `ssh host cmd`.
+# Rule: environment only. No output, no subprocesses, no aliases.
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+typeset -U path PATH            # keep PATH free of duplicates
+path=("$HOME/.local/bin" "$HOME/.cargo/bin" $path)
+
+# Non-interactive shells (agents, scripts) get mise shims so `python`/`node` resolve per project.
+# Interactive shells use `mise activate` (see .zshrc) instead.
+[[ -o interactive ]] || path=("$XDG_DATA_HOME/mise/shims" $path)
+
+export EDITOR=vi                # change to taste
+export VISUAL=$EDITOR
