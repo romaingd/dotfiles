@@ -80,7 +80,7 @@ ubuntu-dock@ubuntu.com
 
 # Ubuntu settings
 
-- Compose key: `Right Alt`
+- Compose key: `Right Alt` or `Right Ctrl`
 
 ## Keyboard shortcuts
 
