@@ -1,45 +1,117 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
+// Zed settings (~/.config/zed/settings.json). JSONC: comments and trailing commas allowed.
+// Defaults: `zed: open default settings`. If Zed underlines a key as unknown, delete it.
 {
-  "icon_theme": "Material Icon Theme",
+  // ============================================================
+  // 1. AI / TELEMETRY
+  // ============================================================
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
-  "git": {
-    "inline_blame": {
-      "enabled": false
-    }
-  },
+
+  // ============================================================
+  // 2. APPEARANCE
+  // ============================================================
   "base_keymap": "VSCode",
-  "minimap": {
-    "show": "never"
-  },
-  "cursor_blink": false,
-  "autosave": {
-    "after_delay": {
-      "milliseconds": 3000
-    }
-  },
-  "buffer_font_fallbacks": [
-    "monospace"
-  ],
-  "buffer_font_family": "Fira Code",
-  "file_scan_exclusions": [
-    "**/.venv",
-    "..."
-  ],
-  "ui_font_size": 16,
-  "buffer_font_size": 15,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark Pro",
+    "dark": "One Dark Pro"
   },
+  "icon_theme": "Material Icon Theme",
+  "ui_font_size": 16,
+  "buffer_font_family": "Fira Code",
+  "buffer_font_fallbacks": ["monospace"],
+  "buffer_font_size": 15,
+  "collaboration_panel": { "button": false },
+  "notification_panel": { "button": false },
+  "title_bar": { "show_sign_in": false },
+
+  // ============================================================
+  // 3. EDITOR (power: no constant repaints)
+  // ============================================================
+  "cursor_blink": false,
+  "minimap": { "show": "never" },
+  "inlay_hints": { "enabled": true },
+
+  // ============================================================
+  // 4. FILES / SAVING
+  // ============================================================
+  // Watch for text jumping while you pause: format-on-save also runs on autosave.
+  // If annoying, use "on_focus_change" here instead.
+  "autosave": {
+    "after_delay": { "milliseconds": 3000 }
+  },
+  "format_on_save": "on",
+  // .lake is deliberately not listed: Lean stays in VS Code, and grepping Mathlib stays possible.
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/.venv",
+    "**/.venv_container",
+    "**/node_modules",
+    "**/target"
+  ],
+
+  // ============================================================
+  // 5. TERMINAL (tmux/Alacritty remains the real terminal)
+  // ============================================================
+
+  // ============================================================
+  // 6. GIT
+  // ============================================================
+  "git": {
+    "inline_blame": { "enabled": false }
+  },
+
+  // ============================================================
+  // 7. LANGUAGES
+  // ============================================================
+  "languages": {
+    "Python": {
+      // ty (built into Zed) for types, Ruff for lint/format. Explicit list so that no
+      // second type checker starts alongside ty.
+      "language_servers": ["ty", "ruff", "!basedpyright", "!pyright", "!pylsp"],
+      "formatter": { "language_server": { "name": "ruff" } },
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true
+      }
+    }
+  },
+
+  // ============================================================
+  // 8. LANGUAGE SERVER OPTIONS
+  // ============================================================
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": { "command": "clippy" },
+        // Own target dir so rust-analyzer checks don't contend with `cargo build`.
+        "cargo": { "targetDir": true }
+      }
+    }
+    // ty ships with Zed as its own copy, which can drift from the ty pinned in your project
+    // (it is still 0.0.x, so diagnostics change between releases). To use the project's copy,
+    // put `.venv/bin` on PATH (direnv/mise) and uncomment:
+    // "ty": { "binary": { "path": "ty", "arguments": ["server"] } }
+  },
+
+  // ============================================================
+  // 9. EXTENSIONS (installed automatically on first launch)
+  // ============================================================
+  "auto_install_extensions": {
+    "toml": true,            // Cargo.toml, pyproject.toml, ruff.toml
+    "dockerfile": true,
+    "docker-compose": true,
+    "git-firefly": true,     // .gitconfig / .gitignore / .gitattributes
+    "material-icon-theme": true,
+    "one-dark-pro": true
+  }
 }
