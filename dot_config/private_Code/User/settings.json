@@ -1,96 +1,107 @@
 {
+  // ============================================================
+  // 1. AI / TELEMETRY
+  // ============================================================
+  // Built-in Copilot chat/inline suggestions off
+  "chat.disableAIFeatures": true,
+  "telemetry.telemetryLevel": "off",
+  "redhat.telemetry.enabled": false,
+  // Manual updates = no surprise changes; you still get "update available" notices.
+  "extensions.autoUpdate": "off",
+
+  // ============================================================
+  // 2. APPEARANCE / WORKBENCH
+  // ============================================================
   "workbench.colorTheme": "One Dark Pro Darker",
   "window.customMenuBarAltFocus": false,
   "window.menuBarVisibility": "compact",
-  "git.autofetch": true,
-  "editor.occurrencesHighlight": "off",
-  "files.autoSave": "afterDelay",
-  "git.confirmSync": false,
-  "editor.minimap.enabled": false,
-  "workbench.externalBrowser": "firefox",
-  "editor.fontFamily": "'Fira Code'",
-  "terminal.integrated.fontLigatures.enabled": true,
-  "editor.fontLigatures": true,
   "workbench.startupEditor": "none",
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.externalBrowser": "firefox",
+
+  // ============================================================
+  // 3. EDITOR (power: no constant repaints)
+  // ============================================================
+  "editor.fontFamily": "'Fira Code', monospace",
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "editor.occurrencesHighlight": "off",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": "off",
+  "editor.smoothScrolling": false,
+  "workbench.list.smoothScrolling": false,
+  "editor.inlayHints.enabled": "on", // replaces python.analysis.inlayHints.functionReturnTypes
+
+  // ============================================================
+  // 4. FILES / SEARCH / WATCHERS
+  // ============================================================
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 3000,
   "explorer.confirmDelete": false,
-  "python.analysis.showOnlyDirectDependenciesInAutoImport": true,
-  "gitlens.views.commitDetails.files.layout": "tree",
-  "python.analysis.enablePytestSupport": false,
-  "cSpell.revealIssuesAfterDelayMS": 10000,
-  "githubPullRequests.queries": [
-    {
-      "label": "Assigned To Me",
-      "query": "repo:${owner}/${repository} is:open assignee:${user}"
-    },
-    {
-      "label": "Local Pull Request Branches",
-      "query": "default"
-    },
-    {
-      "label": "Waiting For My Review",
-      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
-    },
-    {
-      "label": "Created By Me",
-      "query": "repo:${owner}/${repository} is:open author:${user}"
-    },
-    {
-      "label": "All Open",
-      "query": "default"
-    }
-  ],
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "gitlens.autolinks": [
-    {
-      "prefix": "SP-",
-      "url": "https://spinergie.atlassian.net/browse/SP-<num>"
-    }
-  ],
-  "yaml.schemas": {
-    "file:///home/romain/.vscode/extensions/continue.continue-1.2.7-linux-x64/config-yaml-schema.json": [
-      ".continue/**/*.yaml"
-    ]
+  "files.exclude": {
+    "**/.venv": true
   },
-  "continue.enableTabAutocomplete": false,
-  "git.blame.editorDecoration.enabled": false,
-  "gitConfigUser.profiles": [
-    {
-      "label": "Perso",
-      "email": "34568327+romaingd@users.noreply.github.com",
-      "userName": "Romain Girard",
-      "selected": false,
-      "id": "95d65993-6028-4d6b-9388-d3de58177282",
-      "signingKey": ""
-    },
-    {
-      "label": "Work",
-      "email": "romain.girard@spinergie.com",
-      "userName": "Romain Girard",
-      "selected": true,
-      "id": "75102a49-d689-47e8-b4ee-c6338d7ae119",
-      "signingKey": ""
-    }
-  ],
-  "python.analysis.cacheLSPData": true,
+  "files.watcherExclude": {
+    "**/.git": true,
+    "**/.venv/**": true,
+    "**/.venv_container/**": true,
+    "**/node_modules": true,
+    "**/target/**": true,
+    "**/.lake/**": true
+  },
+  // .lake deliberately NOT excluded from search: lets you grep Mathlib from the editor.
+  "search.exclude": {
+    "**/.git": true,
+    "**/.venv": true,
+    "**/.venv_container": true,
+    "**/target": true
+  },
+  "search.maxResults": 1000,
+  "search.quickAccess.preserveInput": true,
+  "search.searchOnTypeDebouncePeriod": 400,
+
+  // ============================================================
+  // 4b. DIFF
+  // ============================================================
   "diffEditor.renderSideBySide": true,
-  "gitlens.views.scm.grouped.views": {
-    "commits": false,
-    "branches": false,
-    "remotes": false,
-    "stashes": false,
-    "tags": false,
-    "worktrees": false,
-    "contributors": false,
-    "fileHistory": false,
-    "repositories": false,
-    "searchAndCompare": true,
-    "launchpad": false
-  },
-  "remote.autoForwardPortsSource": "hybrid",
-  "terminal.external.linuxExec": "alacritty",
-  "diffEditor.experimental.showMoves": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": true,
+
+  // ============================================================
+  // 5. TERMINAL (tmux/Alacritty is the real terminal; this is the side one)
+  // ============================================================
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.fontLigatures.enabled": true,
+  "terminal.integrated.shellIntegration.enabled": false,
   "terminal.integrated.stickyScroll.enabled": false,
-  "python.defaultInterpreterPath": "/bin/python3",
+  "terminal.external.linuxExec": "alacritty",
+
+  // ============================================================
+  // 6. GIT (built-in)
+  // ============================================================
+  // autofetch = periodic network + wakeups; fine, but first thing to turn off on battery.
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.blame.editorDecoration.enabled": false,
+  "git.blame.statusBarItem.enabled": true,
+
+  // ============================================================
+  // 7. PYTHON
+  // ============================================================
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+
+  // ============================================================
+  // 8. RUST
+  // ============================================================
+  "rust-analyzer.check.command": "clippy",
+  // Own target dir for rust-analyzer so checks don't fight `cargo build` for the lock.
+  "rust-analyzer.cargo.targetDir": true,
+
+  // ============================================================
+  // 9. LANGUAGE-SPECIFIC FORMATTERS
+  // ============================================================
   "[dockercompose]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
@@ -100,65 +111,14 @@
       "comments": false,
       "strings": true
     },
-    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-  "redhat.telemetry.enabled": false,
-  "python.analysis.autoImportCompletions": true,
-  "gitlens.rebaseEditor.ordering": "asc",
-  "files.watcherExclude": {
-    "**/.git": true,
-    "**/.venv_container/**": true,
-    "**/.venv/**": true,
-    "**/node_modules": true
-  },
-  "python.analysis.userFileIndexingLimit": 2500,
-  "claudeCode.preferredLocation": "sidebar",
-  "python-envs.terminal.autoActivationType": "off",
-  "terminal.integrated.shellIntegration.enabled": false,
-  "claudeCode.selectedModel": "sonnet",
-  "githubPullRequests.focusedMode": "overview",
-  "workbench.editor.empty.hint": "hidden",
-  "search.exclude": {
-    "**/.git": true,
-    "**/.venv": true,
-    "**/.venv_container": true
-  },
-  "githubPullRequests.pushBranch": "always",
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "search.quickAccess.preserveInput": true,
-  "search.searchOnTypeDebouncePeriod": 400,
-  "files.exclude": {
-    "**/.venv": true
-  },
-  "search.maxResults": 1000,
-  "gitlens.showWhatsNewAfterUpgrades": false,
-  "gitlens.plusFeatures.enabled": false,
-  "gitlens.virtualRepositories.enabled": false,
-  "gitlens.currentLine.pullRequests.enabled": false,
-  "gitlens.codeLens.authors.enabled": false,
-  "gitlens.statusBar.enabled": false,
-  "gitlens.statusBar.pullRequests.enabled": false,
-  "gitlens.hovers.avatars": false,
-  "gitlens.ai.enabled": false,
-  "gitlens.telemetry.enabled": false,
-  "gitlens.advanced.repositorySearch.enabled": false,
-  "gitlens.gitkraken.mcp.autoEnabled": false,
-  "gitlens.codeLens.enabled": false,
-  "gitlens.terminalLinks.enabled": false,
-  "gitlens.integrations.enabled": false,
-  "workbench.experimental.modernUI": true,
-  "githubPullRequests.fileListLayout": "tree",
-  "python.analysis.inlayHints.functionReturnTypes": true,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "rewrap.wrappingColumn": 120,
-  "ansible.validation.lint.enabled": false,
-  "ansible.lightspeed.enabled": false,
-  "ansible.lightspeed.suggestions.enabled": false,
-  "diffEditor.useInlineViewWhenSpaceIsLimited": true,
-  "multiDiffEditor.experimental.fileList": true
+
+  // ============================================================
+  // 10. CLAUDE CODE
+  // ============================================================
+
+  // ============================================================
+  // 11. EXTENSION SETTINGS
+  // ============================================================
+  "rewrap.wrappingColumn": 100,
 }
