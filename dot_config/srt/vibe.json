@@ -1,0 +1,50 @@
+{
+  "network": {
+    "allowedDomains": [
+	"api.mistral.ai",
+    	"github.com",
+    	"*.github.com"
+    ],
+    "deniedDomains": [],
+    "allowLocalBinding": false
+  },
+  "filesystem": {
+    "denyRead": ["~", "/run/user/1000", "/mnt", "/media", "./.env", "./.env.local"],
+    "allowRead": [
+      ".",
+      "~/.vibe",
+      "~/.local/bin",
+      "~/.local/share/mise",
+      "~/.local/share/uv",
+      "~/.config/mise",
+      "~/.cargo/bin",
+      "~/.cargo/registry",
+      "~/.cargo/git",
+      "~/.rustup",
+      "~/.elan",
+      "~/.cache/uv",
+      "~/.cache/mathlib"
+    ],
+    "allowWrite": [
+      ".",
+      "/tmp",
+      "~/.cache/uv",
+      "~/.cargo/registry",
+      "~/.cargo/git",
+      "~/.cache/mathlib"
+    ],
+    "denyWrite": [
+      ".git/hooks",
+      ".git/config",
+      ".envrc",
+      "mise.toml",
+      ".mise.toml",
+      "justfile",
+      ".vscode",
+      ".vibe",
+      ".pre-commit-config.yaml"
+    ]
+  },
+  "enableWeakerNestedSandbox": false,
+  "enableWeakerNetworkIsolation": false
+}
